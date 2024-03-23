@@ -1,5 +1,5 @@
 export interface Category {
-    cateId: number
+    id: number
     cateName: string
     cateState: boolean
 }

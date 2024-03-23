@@ -1,11 +1,19 @@
 export interface Product {
-    prodId: number
-    prodCode: string
-    prodImage: string
+    id: number
+    SerialNumber: number
+    prodNumber: string
+    featuredImageId: string
     prodName: string
     prodDescription: string
-    CategoryId: number
+    Unit: number
     prodStock: number
+    prodPurchasePrice: number
     prodSalePrice: number
+    prodWidth: number
+    prodHeight: number
+    prodDepth: number
+    prodWeight: number
+    prodState: number
     prodWebHome: number
+
 }
