@@ -1,0 +1,132 @@
+@import './main.scss';
+
+.main-products {
+    .front-page-products {
+        height: 80vh;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+    .stn-products {
+        max-width: 1250px;
+        width: 100%;
+        margin: auto;
+        h2 {
+            font-size: 3em;
+            font-style: italic;
+            text-transform: uppercase;
+            margin-top: 100px;
+        }
+        .hr {
+            height: 1px;
+            background-color: $global;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .ctn-category-products {
+            .categories {
+                display: flex;
+                justify-content: start;
+                gap: 40px;
+                margin-top: 30px;
+                .categorySelected {
+                    background-color: $rojo-claro;
+                    padding: 5px 20px;
+                    border-radius: 25px;
+                    cursor: pointer;
+                    color: $blanco;
+                }
+                .categoryNoSelected {
+                    background-color: $blanco;
+                    padding: 5px 20px;
+                    border-radius: 25px;
+                    cursor: pointer;
+                    color: $rojo-claro;
+                }
+            }
+            .products {
+                display: flex;
+                justify-content: start;
+                flex-wrap: wrap;
+                gap: 35px;
+                align-items: center;
+                margin: auto;
+                margin-top: 30px;
+                li {
+                    display: flex;
+                    flex-direction: column;
+                    background-color: $blanco;
+                    width: 220px;
+                    height: 270px;
+                    border-radius: 10px;
+                    box-shadow: 0 1px 5px $gris0;
+                    .box-img {
+                        width: 220px;
+                        height: 200px;
+                        img {
+                            width: 220px;
+                            height: 200px;
+                            object-fit: cover;
+                            border-radius: 10px 10px 0 0;
+                            z-index: -2;
+                        }
+                    }
+                    .info-prod {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        background-color: $rojo-claro;
+                        height: 100px;
+                        margin-top: -20px;
+                        border-radius: 10px;
+                        padding-top: 9px;
+                        .card-product-description {
+                            width: 190px;
+                            height: 60px;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            color: $blanco;
+                            margin: auto;
+                            span {
+                                color: $blanco;
+                                font-size: 1em;
+                                font-weight: normal;
+                                letter-spacing: 1px;
+                            }
+                        }
+                        .button {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 150px;
+                            height: 30px;
+                            border-radius: 20px;
+                            margin: auto;
+                            margin-top: -40px;
+                            cursor: pointer;
+                            background-color: $transparente;
+                            border: 1px solid $blanco;
+                            font-size: .9em;
+                            transition: .6s all ease;
+                            a {
+                                color: $blanco;
+                            }
+                            &:hover {
+                                background-color: $blanco;
+                                border: 1px solid $blanco;
+                                font-size: 1.05em;
+                                font-weight: bold;
+                                a  {
+                                    color: $rojo-claro
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

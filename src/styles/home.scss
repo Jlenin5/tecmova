@@ -1,0 +1,161 @@
+@import './main.scss';
+
+.main-home {
+    .front-page-home {
+        height: 100vh;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .stn-products {
+        display: flex;
+        justify-content: start;
+        max-width: 1200px;
+        flex-wrap: wrap;
+        gap: 30px;
+        width: 100%;
+        margin: auto;
+        margin-top: 100px;
+        .ctn-card-product {
+            width: 220px;
+            height: 270px;
+            border-radius: 15px;
+            box-shadow: 0px 1px 5px $gris0;
+            margin: 0 25px 25px 25px;
+            .box-product {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin: auto;
+                .ctn-img {
+                    width: 220px;
+                    height: 220px;
+                    background-color: $blanco;
+                    border-radius: 15px 15px 0 0;
+                    img {
+                        width: 100%;
+                        height: 200px;
+                        border-radius: 15px 15px 0 0;
+                        object-fit: cover;
+                    }
+                }
+                .info-card-home {
+                    background-color: $rojo-claro;
+                    padding: 11px;
+                    width: 199px;
+                    height: 60px;
+                    margin-top: -32px;
+                    border-radius: 15px;
+                    .card-product-description {
+                        width: 190px;
+                        height: 60px;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        color: $blanco;
+                        span {
+                            color: $blanco;
+                            font-size: 1em;
+                            font-weight: normal;
+                            letter-spacing: 1px;
+                        }
+                    }
+                    .button {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 150px;
+                        height: 30px;
+                        border-radius: 20px;
+                        margin: auto;
+                        margin-top: -30px;
+                        cursor: pointer;
+                        background-color: $transparente;
+                        border: 1px solid $blanco;
+                        font-size: .9em;
+                        transition: .6s all ease;
+                        a {
+                            color: $blanco;
+                        }
+                        &:hover {
+                            background-color: $blanco;
+                            border: 1px solid $blanco;
+                            font-size: 1.05em;
+                            font-weight: bold;
+                            a  {
+                                color: $rojo-claro
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .stn-delivery-return {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 1200px;
+        width: 100%;
+        gap: 50px;
+        flex-wrap: wrap;
+        margin: auto;
+        margin-top: 100px;
+        .ctn-delivery, .ctn-return {
+            width: 450px;
+            margin: 0 50px;
+            font-size: 1.2em;
+            i {
+                color: $global;
+            }
+            h3 {
+                margin-top: 20px;
+            }
+            p {
+                margin-top: 10px;
+                color: $gris2;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .main-home {
+        .stn-products {
+            max-width: 450px;
+            gap:10px;
+            width: 100%;
+            margin-top: 50px;
+            .ctn-card-product {
+                width: 140px;
+                height: 200px;
+                margin: auto;
+                margin-top: 20px;
+                .box-product {
+                    .ctn-img {
+                        width: 140px;
+                        height: 120px;
+                        img {
+                            width: 100%;
+                            height: 140px;
+                        }
+                    }
+                    .info-card-home {
+                        width: 120px;
+                        margin-top: -2px;
+                        .card-product-description {
+                            width: 120px;
+                            height: 60px;
+                        }
+                        .button {
+                            width: 100px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

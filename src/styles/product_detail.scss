@@ -1,0 +1,51 @@
+@import './main.scss';
+
+.stn-card-product-detail {
+    margin: auto;
+    max-width: 1200px;
+    width: 100%;
+    margin-top: 150px;
+    box-shadow: 0 1px 5px $gris0;
+    border-radius: 15px;
+    .card-product-detail {
+        display: flex;
+        justify-content: space-between;
+        padding: 25px;
+        .box-img {
+            width: 350px;
+            img {
+                width: 350px;
+            }
+        }
+        .hr {
+            width: 2px;
+            background-color: $gris0;
+            margin: 10px 0;
+        }
+        .box-info {
+            max-width: 750px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            h2 {
+                text-transform: capitalize;
+                font-style: italic;
+                color: $global;
+                font-size: 3em;
+            }
+            p {
+                margin-top: 20px;
+                font-size: 1.2em;
+            }
+            .ctn-subinfo {
+                display: flex;
+                align-items: center;
+                height: 30px;
+                h4 {
+                    width: 100px;
+                }
+            }
+        }
+    }
+}
