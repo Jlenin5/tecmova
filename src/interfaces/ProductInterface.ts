@@ -1,3 +1,9 @@
+import { BranchOffice } from "./BranchOfficeInterface"
+import { Category } from "./CategoryInterface"
+import { ProductImage } from "./ProductImageInterface"
+import { SerialNumber } from "./SerialNumberInterface"
+import { Unit } from "./UnitInterface"
+
 export interface Product {
     id: number
     SerialNumber: number
@@ -15,5 +21,9 @@ export interface Product {
     prodWeight: number
     prodState: number
     prodWebHome: number
-
+    categories: Category[]
+    product_images: ProductImage[]
+    serial_number: SerialNumber[]
+    unit: Unit[]
+    branch_office: BranchOffice[]
 }
