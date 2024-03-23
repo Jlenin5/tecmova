@@ -20,7 +20,7 @@ function Routess() {
         <Route path="/contactanos" element={<Contact />} />
         <Route path="nosotros" element={<About />} />
         <Route path="productos" element={<Products />} />
-        <Route path="/:prodCode" element={<ProductDetail />} />
+        <Route path="/:featuredImageId" element={<ProductDetail />} />
       </Routes>
       <Footer />
     </Router>

@@ -13,16 +13,16 @@ const Products = () => {
   const [dataProduct,setDataProduct] = useState<Product[]>([])
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
 
-  const clickedCategory = (category: number) => {
-    if(category===0) {
-      setFilteredProducts(dataProduct)
-      setSelectedCategory(0)
-    } else {
-      const filteredProductByCategory = dataProduct.filter((r) => r.CategoryId === category);
-      setFilteredProducts(filteredProductByCategory)
-      setSelectedCategory(category)
-    }
-  }
+  // const clickedCategory = (category: number) => {
+  //   if(category===0) {
+  //     setFilteredProducts(dataProduct)
+  //     setSelectedCategory(0)
+  //   } else {
+  //     const filteredProductByCategory = dataProduct.filter((r) => r.CategoryId === category);
+  //     setFilteredProducts(filteredProductByCategory)
+  //     setSelectedCategory(category)
+  //   }
+  // }
 
   useEffect(() => {
     getCategories().then(r => setDataCategory(r))
@@ -41,24 +41,31 @@ const Products = () => {
         <h2>Productos</h2>
         <div className="hr"></div>
         <div className="ctn-category-products">
-          <ul className="categories">
+          {/* <ul className="categories">
             <li onClick={() => clickedCategory(0)} className={selectedCategory === 0 ? 'categorySelected' : 'categoryNoSelected'}>Todos</li>
             {dataCategory.map(r => (
-              <li key={r.cateId} onClick={() => clickedCategory(r.cateId)} className={selectedCategory === r.cateId ? 'categorySelected' : 'categoryNoSelected'}>{r.cateName}</li>
+              <li key={r.id} onClick={() => clickedCategory(r.id)} className={selectedCategory === r.id ? 'categorySelected' : 'categoryNoSelected'}>{r.cateName}</li>
             ))}
-          </ul>
+          </ul> */}
           <ul className="products">
             {filteredProducts.map((r) => (
-              <li key={r.prodId}>
+              <li key={r.id}>
                 <div className="box-img">
-                  <img src={`https://sismova.tech/backsis/public/images/${r.prodImage}`} alt="" />
+                {r.product_images.find((image) => image.featured === r.featuredImageId) && (
+                  <img
+                    src={`https://sismova.tech/backsis/public/images/products/${
+                      r.product_images.find((image) => image.featured === r.featuredImageId)?.primPath
+                    }`}
+                    alt={r.prodName}
+                  />
+                )}
                 </div>
                 <div className="info-prod">
                   <div className="card-product-description">
                     <span>{r.prodName}</span>
                   </div>
                   <div className="button">
-                    <Link to={`/${r.prodCode}`}>Ver más</Link>
+                    <Link to={`/${r.featuredImageId}`}>Ver más</Link>
                   </div>
                 </div>
               </li>
