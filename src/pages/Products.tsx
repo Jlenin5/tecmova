@@ -93,7 +93,7 @@ const Products = () => {
                     <span>{r.prodName}</span>
                   </div>
                   <div className="button">
-                    <Link to={`/${r.featuredImageId}`}>Ver más</Link>
+                    <Link to={`/catalogo/producto/${r.prodNumber}`}>Ver más</Link>
                   </div>
                 </div>
               </li>

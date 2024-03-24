@@ -3,7 +3,7 @@ import asyncThunkWithAxios from '../service/api'
 import { Product } from '../interfaces/ProductInterface'
 
 export const getProducts = asyncThunkWithAxios('prod', 'inventoryEC/products/getProducts', 'get')
-export const getProduct = asyncThunkWithAxios('prod', 'inventoryEC/products/getProduct', 'getid')
+export const getProduct:any = asyncThunkWithAxios('prodfeatured', 'inventoryEC/products/getProduct', 'getid')
 
 const initialState: Product = {
   id: 1,
@@ -35,6 +35,7 @@ const productsSlice:any = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getProducts.fulfilled, (state, action) => action.payload)
+    builder.addCase(getProduct.fulfilled, (state, action) => action.payload)
   }
 })
 
