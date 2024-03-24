@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import '../styles/home.scss'
-import { getProducts } from "../service/API"
+import { getProducts } from "../service/cate"
 import { Product } from "../interfaces/ProductInterface"
 import { Link } from "react-router-dom"
 import portada from '../images/portada.jpg'

@@ -2,16 +2,30 @@ import ecommerce from '../images/ecommerce.jpg'
 import '../styles/products.scss'
 import { Category } from '../interfaces/CategoryInterface'
 import { useEffect, useState } from 'react'
-import { getCategories, getProducts } from '../service/API'
+// import { getCategories, getProducts } from '../service/API'
 import { Product } from '../interfaces/ProductInterface'
 import { Link } from 'react-router-dom'
+import { getProducts } from '../store/productSlice'
+import { useAppDispatch, useAppSelector } from '../hooks/store'
 
 const Products = () => {
+  const dispatch = useAppDispatch()
+  const products = useAppSelector((state:any) => state.products)
 
   const [dataCategory,setDataCategory] = useState<Category[]>([])
+  const [data, setData] = useState(products)
+  const [loading, setLoading] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState<number>(0)
   const [dataProduct,setDataProduct] = useState<Product[]>([])
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
+
+  useEffect(() => {
+    dispatch(getProducts(null)).then((response) => {
+      setDataProduct(response.payload)
+      setFilteredProducts(response.payload)
+      setLoading(false)
+    })
+  }, [dispatch])
 
   // const clickedCategory = (category: number) => {
   //   if(category===0) {
@@ -25,12 +39,26 @@ const Products = () => {
   // }
 
   useEffect(() => {
-    getCategories().then(r => setDataCategory(r))
-    getProducts().then((r) => {
-      setDataProduct(r)
-      setFilteredProducts(r)
-    })
+    // getCategories().then(r => setDataCategory(r))
+    // getProducts().then((r) => {
+    //   setDataProduct(r)
+    //   setFilteredProducts(r)
+    // })
   }, [])
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        Cargando...
+      </div>
+    )
+  }
+
+  if(data.length === 0) {
+    return (
+      <h1>No hay datos</h1>
+    )
+  }
 
   return (
     <main className='main-products'>
