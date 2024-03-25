@@ -2,17 +2,18 @@ import ecommerce from '../images/ecommerce.jpg'
 import '../styles/products.scss'
 import { Category } from '../interfaces/CategoryInterface'
 import { useEffect, useState } from 'react'
-// import { getCategories, getProducts } from '../service/API'
 import { Product } from '../interfaces/ProductInterface'
 import { Link } from 'react-router-dom'
 import { getProducts } from '../store/productSlice'
 import { useAppDispatch, useAppSelector } from '../hooks/store'
+import { getCategories } from '../store/categoriesSlice'
+import LoadProducts from './loading/LoadProducts'
 
 const Products = () => {
   const dispatch = useAppDispatch()
   const products = useAppSelector((state:any) => state.products)
 
-  const [dataCategory,setDataCategory] = useState<Category[]>([])
+  const [dCategory,setDCategory] = useState<Category[]>([])
   const [data, setData] = useState(products)
   const [loading, setLoading] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState<number>(0)
@@ -25,18 +26,22 @@ const Products = () => {
       setFilteredProducts(response.payload)
       setLoading(false)
     })
+    dispatch(getCategories(null)).then((response) => setDCategory(response.payload))
   }, [dispatch])
 
-  // const clickedCategory = (category: number) => {
-  //   if(category===0) {
-  //     setFilteredProducts(dataProduct)
-  //     setSelectedCategory(0)
-  //   } else {
-  //     const filteredProductByCategory = dataProduct.filter((r) => r.CategoryId === category);
-  //     setFilteredProducts(filteredProductByCategory)
-  //     setSelectedCategory(category)
-  //   }
-  // }
+  const clickedCategory = (category: number) => {
+    if(category===0) {
+      setFilteredProducts(dataProduct)
+      setSelectedCategory(0)
+    } else {
+      const filteredProductByCategory = products.filter((product: Product) =>
+        product.categories.some((cat) => cat.id === category)
+      )
+      console.log(filteredProductByCategory)
+      setFilteredProducts(filteredProductByCategory)
+      setSelectedCategory(category)
+    }
+  }
 
   useEffect(() => {
     // getCategories().then(r => setDataCategory(r))
@@ -45,14 +50,6 @@ const Products = () => {
     //   setFilteredProducts(r)
     // })
   }, [])
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-full">
-        Cargando...
-      </div>
-    )
-  }
 
   if(data.length === 0) {
     return (
@@ -68,38 +65,43 @@ const Products = () => {
       <section className='stn-products'>
         <h2>Productos</h2>
         <div className="hr"></div>
-        <div className="ctn-category-products">
-          {/* <ul className="categories">
-            <li onClick={() => clickedCategory(0)} className={selectedCategory === 0 ? 'categorySelected' : 'categoryNoSelected'}>Todos</li>
-            {dataCategory.map(r => (
-              <li key={r.id} onClick={() => clickedCategory(r.id)} className={selectedCategory === r.id ? 'categorySelected' : 'categoryNoSelected'}>{r.cateName}</li>
-            ))}
-          </ul> */}
-          <ul className="products">
-            {filteredProducts.map((r) => (
-              <li key={r.id}>
-                <div className="box-img">
-                {r.product_images.find((image) => image.featured === r.featuredImageId) && (
-                  <img
-                    src={`https://sismova.tech/backsis/public/images/products/${
-                      r.product_images.find((image) => image.featured === r.featuredImageId)?.primPath
-                    }`}
-                    alt={r.prodName}
-                  />
-                )}
-                </div>
-                <div className="info-prod">
-                  <div className="card-product-description">
-                    <span>{r.prodName}</span>
+        {
+          loading ? 
+            <LoadProducts />
+          : 
+          <div className="ctn-category-products">
+            <ul className="categories">
+              <li onClick={() => clickedCategory(0)} className={selectedCategory === 0 ? 'categorySelected' : 'categoryNoSelected'}>Todos</li>
+              {dCategory.map(r => (
+                <li key={r.id} onClick={() => clickedCategory(r.id)} className={selectedCategory === r.id ? 'categorySelected' : 'categoryNoSelected'}>{r.cateName}</li>
+              ))}
+            </ul>
+            <ul className="products">
+              {filteredProducts.map((r) => (
+                <li key={r.id}>
+                  <div className="box-img">
+                  {r.product_images.find((image) => image.featured === r.featuredImageId) && (
+                    <img
+                      src={`https://sismova.tech/backsis/public/images/products/${
+                        r.product_images.find((image) => image.featured === r.featuredImageId)?.primPath
+                      }`}
+                      alt={r.prodName}
+                    />
+                  )}
                   </div>
-                  <div className="button">
-                    <Link to={`/catalogo/producto/${r.prodNumber}`}>Ver más</Link>
+                  <div className="info-prod">
+                    <div className="card-product-description">
+                      <span>{r.prodName}</span>
+                    </div>
+                    <div className="button">
+                      <Link to={`/catalogo/producto/${r.prodNumber}`}>Ver más</Link>
+                    </div>
                   </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        }
       </section>
     </main>
   )
