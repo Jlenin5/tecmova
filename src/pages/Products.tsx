@@ -14,6 +14,7 @@ const Products = () => {
   const products = useAppSelector((state:any) => state.products)
   const [dCategory,setDCategory] = useState<Category[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadPage, setLoadPage] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState<number>(0)
   const [checkedCategory, setCheckedCategory] = useState<Set<number>>(new Set())
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
@@ -24,6 +25,10 @@ const Products = () => {
       setLoading(false)
     })
     dispatch(getCategories(null)).then((response) => setDCategory(response.payload))
+    const timer = setTimeout(() => {
+      setLoadPage(true)
+    }, 1000)
+    return () => clearTimeout(timer)
   }, [dispatch])
 
   const clickedCategory = (category: number) => {
@@ -79,7 +84,7 @@ const Products = () => {
           loading ? 
             <LoadProducts />
           : 
-          <div className="ctn-category-products">
+          <div className={`ctn-category-products ${loadPage ? 'loaded': ''}`}>
             <ul className="categories">
               <li onClick={() => clickedCategory(0)} className={selectedCategory === 0 ? 'categorySelected' : 'categoryNoSelected'}>Todos</li>
               {dCategory.map(r => (
