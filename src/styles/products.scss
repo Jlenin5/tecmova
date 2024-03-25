@@ -46,81 +46,126 @@
                     color: $rojo-claro;
                 }
             }
-            .products {
-                display: flex;
-                justify-content: start;
-                flex-wrap: wrap;
-                gap: 35px;
-                align-items: center;
-                margin: auto;
+            .ctn-filter-products {
+                display: grid;
+                grid-template-columns: 15% 85%;
+                grid-gap: 3pc;
                 margin-top: 30px;
-                li {
-                    display: flex;
-                    flex-direction: column;
-                    background-color: $blanco;
-                    width: 220px;
-                    height: 270px;
-                    border-radius: 10px;
-                    box-shadow: 0 1px 5px $gris0;
-                    .box-img {
-                        width: 220px;
-                        height: 200px;
-                        img {
-                            width: 220px;
-                            height: 200px;
-                            object-fit: cover;
-                            border-radius: 10px 10px 0 0;
-                            z-index: -2;
+                .filters {
+                    span {
+                        font-size: 1.5em;
+                        font-weight: 500;
+                        margin-bottom: 0;
+                    }
+                    .hr {
+                        margin-top: 5px;
+                    }
+                    li {
+                        display: flex;
+                        align-items: center;
+                        margin-top: 35px;
+                        cursor: pointer;
+                        .box-check {
+                            position: relative;
+                            border: 2px solid $gris2;
+                            background-color: $blanco;
+                            border-radius: 4px;
+                            width: 16px;
+                            height: 16px;
+                            text-align: center;
+                            i {
+                                position: absolute;
+                                color: $blanco;
+                                font-size: .9em;
+                                top: 2px;
+                                left: 2px;
+                            }
+                            &.selected {
+                                border: 2px solid $azul-checked;
+                                background-color: $azul-checked;
+                            }
+                        }
+                        .name {
+                            margin-left: 15px;
+                            font-size: 1.1em;
                         }
                     }
-                    .info-prod {
+                }
+                .products {
+                    display: flex;
+                    justify-content: start;
+                    flex-wrap: wrap;
+                    gap: 35px;
+                    align-items: center;
+                    // margin: auto;
+                    li {
                         display: flex;
                         flex-direction: column;
-                        justify-content: center;
-                        background-color: $rojo-claro;
-                        height: 100px;
-                        margin-top: -20px;
+                        background-color: $blanco;
+                        width: 220px;
+                        height: 270px;
                         border-radius: 10px;
-                        padding-top: 9px;
-                        .card-product-description {
-                            width: 190px;
-                            height: 60px;
-                            text-overflow: ellipsis;
-                            white-space: nowrap;
-                            overflow: hidden;
-                            color: $blanco;
-                            margin: auto;
-                            span {
-                                color: $blanco;
-                                font-size: 1em;
-                                font-weight: normal;
-                                letter-spacing: 1px;
+                        box-shadow: 0 1px 5px $gris0;
+                        .box-img {
+                            width: 220px;
+                            height: 200px;
+                            img {
+                                width: 220px;
+                                height: 200px;
+                                object-fit: cover;
+                                border-radius: 10px 10px 0 0;
+                                z-index: -2;
                             }
                         }
-                        .button {
+                        .info-prod {
                             display: flex;
+                            flex-direction: column;
                             justify-content: center;
-                            align-items: center;
-                            width: 150px;
-                            height: 30px;
-                            border-radius: 20px;
-                            margin: auto;
-                            margin-top: -40px;
-                            cursor: pointer;
-                            background-color: $transparente;
-                            border: 1px solid $blanco;
-                            font-size: .9em;
-                            transition: .6s all ease;
-                            a {
+                            background-color: $rojo-claro;
+                            height: 100px;
+                            margin-top: -20px;
+                            border-radius: 10px;
+                            padding-top: 9px;
+                            .card-product-description {
+                                width: 190px;
+                                height: 60px;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                overflow: hidden;
                                 color: $blanco;
+                                margin: auto;
+                                span {
+                                    color: $blanco;
+                                    font-size: 1em;
+                                    font-weight: normal;
+                                    letter-spacing: 1px;
+                                }
                             }
-                            &:hover {
-                                background-color: $blanco;
+                            .button {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 150px;
+                                height: 30px;
+                                border-radius: 20px;
+                                margin: auto;
+                                margin-top: -40px;
+                                cursor: pointer;
+                                background-color: $transparente;
                                 border: 1px solid $blanco;
-                                font-size: 1.05em;
-                                font-weight: bold;
-                                a  {
-                                    color: $rojo-claro
+                                font-size: .9em;
+                                transition: .6s all ease;
+                                a {
+                                    color: $blanco;
+                                }
+                                &:hover {
+                                    background-color: $blanco;
+                                    border: 1px solid $blanco;
+                                    font-size: 1.05em;
+                                    font-weight: bold;
+                                    a  {
+                                        color: $rojo-claro
+                                    }
                                 }
                             }
                         }
